@@ -174,6 +174,14 @@ function draftPlayers(){
     })
     team2Container.innerHTML = 'Team 2: ' + team2Content
   console.log(players)
+  team1Players.forEach((player) => {
+    team1Skill += player.skill
+  })
+
+  // Reinitialize Skills
+  team2Players.forEach((player) => {
+    team2Skill += player.skill
+  })
 }
 
 // Draw Initialize
