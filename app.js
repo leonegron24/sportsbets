@@ -23,8 +23,8 @@ const players = [
   { teamNumber: 2, emoji: '🐅', skill: 100, name: "Tiger" },
 ]
 
-const team1Container = document.getElementById('team1'); // Grab Where, Team 1 will draw
-const team2Container = document.getElementById('team2'); // Grab Where, Team 1 will draw
+const team1Container = document.getElementById('dteam1'); // Grab Where, Team 1 will draw
+const team2Container = document.getElementById('dteam2'); // Grab Where, Team 1 will draw
 
 const team1Players = players.filter(player => player.teamNumber === 1)
 const team2Players = players.filter(player => player.teamNumber === 2)
@@ -53,7 +53,7 @@ function drawTeam2(){
     team2Container.innerHTML = 'Team 2: ' + team2Content
 }
 
-function betTeam1(bet) {
+function betTeam(bet, team) {
   team1Players.forEach((player) => {
     team1Skill += player.skill
   })
@@ -63,85 +63,78 @@ function betTeam1(bet) {
 
   console.log('⚽ team 1', team1Skill)
   console.log('🏈 team 2', team2Skill)
-  //... 
+  //... TIE Scenario
   if (team1Skill == team2Skill){
     console.log("Tie! Bet again")
     console.log(bank)
     return
   }
-  if (team1Skill > team2Skill){
-    bank += bet
-    console.log(bank)
-    drawBank()
-    gameOver()
-    draftPlayers();
-    team1Skill = 0
-    team2Skill = 0
-    window.alert("Winner! $" + bet + " added to bank")
-  }
-  if (team1Skill < team2Skill && bet==150){
-    console.log('test')
-    bank = 0
-    window.alert("The game is over, You will never financially recover.")
-    window.location.reload(true)
-  }else{
-    bank -= bet
-    console.log(bank)
-    drawBank()
-    gameOver()
-    draftPlayers();
-    team1Skill = 0
-    team2Skill = 0
-    window.alert("Loser :( $" + bet + " deducted from bank")
-  }
-}
-
-function betTeam2(bet) {
-
-  team1Players.forEach((player) => {
-    team1Skill += player.skill
-  })
-  team2Players.forEach((player) => {
-    team2Skill += player.skill
-  })
-
-  console.log('⚽ team 1', team1Skill)
-  console.log('🏈 team 2', team2Skill)
-  //... 
-  if (team1Skill == team2Skill){
-    console.log("Tie! Bet again")
-    console.log(bank)
-    return
-  }
-  if (team2Skill > team1Skill){
-    bank += bet
-    drawBank();
-    gameOver();
-    draftPlayers();
-    team1Skill = 0
-    team2Skill = 0
-    window.alert("Winner! $" + bet + " added to bank")
-
-  } else{
-    if (bet = 150){
-      gameOver();
+  //... Team1 Bets Scenarios
+  if (team == 'team1'){
+    console.log('you bet for team1')
+    if (team1Skill > team2Skill){
+      bank += bet
+      console.log(bank)
+      drawBank()
+      gameOver()
+      team1Skill = 0
+      team2Skill = 0
+      draftPlayers();
+      window.alert("Winner! $" + bet + " added to bank")
     }else{
       bank -= bet
-      drawBank();
-      gameOver();
+      console.log(bank)
+      drawBank()
+      gameOver()
+      team1Skill = 0
+      team2Skill = 0
+      draftPlayers();
+      window.alert("Loser :( $" + bet + " deducted from bank")
+    }
+    if (team1Skill < team2Skill && bet===150){
+      console.log('test')
+      bank = 0
+      window.alert("The game is over, You will never financially recover.")
+      window.location.reload(true)
+    }
+  }
+  
+  // ...Team2 Bets Scenarios
+  if (team =='team2'){
+     console.log('you bet for team1')
+    if (team2Skill > team1Skill){
+      bank += bet
+      console.log(bank)
+      drawBank()
+      gameOver()
+      draftPlayers();
+      team1Skill = 0
+      team2Skill = 0
+      window.alert("Winner! $" + bet + " added to bank")
+    }else{
+      bank -= bet
+      console.log(bank)
+      drawBank()
+      gameOver()
       draftPlayers();
       team1Skill = 0
       team2Skill = 0
       window.alert("Loser :( $" + bet + " deducted from bank")
     }
+    if (team2Skill < team1Skill && bet===150){
+      console.log('test')
+      bank = 0
+      window.alert("The game is over, You will never financially recover.")
+      window.location.reload(true)
+    }
   }
-  
 }
-
+// SECTION Draw Bank
 function drawBank(){
   bankTotal.innerHTML = bank
 }
 
+// SECTION GAME OVER
 function gameOver(){
   if (bank <= 0){
     bank = 0
@@ -151,6 +144,7 @@ function gameOver(){
   }
 }
 
+// SECTION Draft
 function draftPlayers(){
   console.log("Drafting Teams")
   players.forEach((player) => {
@@ -176,12 +170,13 @@ function draftPlayers(){
     team2Content = '';
 
     team2Players.forEach((player2) => {
-        team2Content += `<span class=d-flex title = "${player2.name}">${player2.emoji}, ${player1.name}</span>`
+        team2Content += `<span class=d-flex title = "${player2.name}">${player2.emoji}, ${player2.name}</span>`
     })
     team2Container.innerHTML = 'Team 2: ' + team2Content
   console.log(players)
 }
 
+// Draw Initialize
 drawTeam1()
 drawTeam2()
 

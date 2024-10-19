@@ -13,37 +13,37 @@
 <body class="bg-dark debug">
 <main class="container-fluid">
     <section class="row justify-content-center">
-        <div id="team1" class="col-5 bg-success text-light m-4 p-4 fs-4 text-center">
+        <div id="dteam1" class="col-5 bg-success text-light m-4 p-4 fs-4 text-center">
             Team 1
         </div>
-        <div id="team2" class="col-5 bg-primary text-light m-4 p-4 fs-4 text-center">
+        <div id="dteam2" class="col-5 bg-primary text-light m-4 p-4 fs-4 text-center">
             Team 2
         </div>
     </section>
     <section class="row justify-content-center">
         <div class="col-5 text-center m-1">
-            <button class="btn btn-success" onclick="betTeam1(25)"> Bet $25 Team 1</button>
+            <button class="btn btn-success" onclick="betTeam(25,'team1')"> Bet $25 Team 1</button>
         </div>
         <div class="col-5 text-center m-1">
-            <button class="btn btn-primary" onclick="betTeam2(25)"> Bet $25 Team 2 </button>
+            <button class="btn btn-primary" onclick="betTeam(25,'team2')"> Bet $25 Team 2 </button>
         </div>
         <div class="col-5 text-center m-1">
-            <button class="btn btn-success" onclick="betTeam1(50)"> Bet $50 Team 1</button>
+            <button class="btn btn-success" onclick="betTeam(50,'team1')"> Bet $50 Team 1</button>
         </div>
         <div class="col-5 text-center m-1">
-            <button class="btn btn-primary" onclick="betTeam2(50)"> Bet 50$ Team 2 </button>
+            <button class="btn btn-primary" onclick="betTeam(50,'team2')"> Bet 50$ Team 2 </button>
         </div>
         <div class="col-5 text-center m-1">
-            <button class="btn btn-success" onclick="betTeam1(100)"> Bet $100 Team 1</button>
+            <button class="btn btn-success" onclick="betTeam(100,'team1')"> Bet $100 Team 1</button>
         </div>
         <div class="col-5 text-center m-1">
-            <button class="btn btn-primary" onclick="betTeam2(100)"> Bet $100 Team 2 </button>
+            <button class="btn btn-primary" onclick="betTeam(100,'team2')"> Bet $100 Team 2 </button>
         </div>
         <div class="col-5 text-center m-1">
-            <button class="btn btn-danger" onclick="betTeam1(150)"> Bet ALL IN Team 1</button>
+            <button class="btn btn-danger" onclick="betTeam(150, 'team1')"> Bet ALL IN Team 1</button>
         </div>
         <div class="col-5 text-center m-1">
-            <button class="btn btn-danger" onclick="betTeam2(150)"> Bet ALL IN Team 2 </button>
+            <button class="btn btn-danger" onclick="betTeam(150,'team2')"> Bet ALL IN Team 2 </button>
         </div>
         <div class="col-6 bg-warning m-4 p-2"> 
             Bank: $
